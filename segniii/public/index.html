@@ -7,15 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4a90e2; /* Soft Blue */
-            --secondary-color: #ff6f61; /* Coral */
+            --primary-color: #6a8eae; /* Muted Blue */
+            --secondary-color: #ff6b6b; /* Bright Coral */
             --background-color: #f7f8fa; /* Light Gray */
             --white: #ffffff;
-            --dark-gray: #343a40;
-            --light-gray: #dcdcdc; /* Light Gray for backgrounds */
-            --hover-gray: #e0e0e0; /* Slightly Darker Gray for Hover */
-            --message-background: #e9ecef; /* Subtle Message Background */
-            --error-color: #dc3545; /* Error Red */
+            --dark-gray: #333333;
+            --light-gray: #e1e1e1; /* Light Gray for backgrounds */
+            --hover-gray: #f0f0f0; /* Slightly Darker Gray for Hover */
+            --message-background: #f0f4f8; /* Light Message Background */
+            --error-color: #e63946; /* Error Red */
+            --success-color: #2ec4b6; /* Success Green */
         }
 
         body {
@@ -28,14 +29,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
         #app {
-            width: 100%;
+            width: 90%;
             max-width: 480px;
             background: var(--white);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             padding: 20px;
@@ -44,7 +46,12 @@
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            margin: 10px 0;
             color: var(--primary-color);
         }
 
@@ -69,7 +76,7 @@
         input:focus {
             border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+            box-shadow: 0 0 5px rgba(106, 142, 174, 0.5);
         }
 
         button {
@@ -106,15 +113,16 @@
             max-height: 150px;
             overflow-y: auto;
             margin: 10px 0;
-            border: 1px solid var(--light-gray);
             border-radius: 5px;
+            background: var(--message-background);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
         #user-list li {
             cursor: pointer;
             padding: 10px;
             border-radius: 5px;
-            background: white;
+            background: var(--white);
             margin: 5px 0;
             transition: background 0.3s;
             font-weight: 500;
@@ -150,7 +158,7 @@
         }
 
         #messages li:nth-child(odd) {
-            background: #f1f3f5; /* Slightly Lighter Background for Alternate Messages */
+            background: #f8f9fa; /* Slightly Lighter Background for Alternate Messages */
         }
 
         #message-form {
@@ -204,7 +212,7 @@
         </div>
         
         <div id="chat-container" class="form-container">
-            <h2>Chat Room</h2><br><br>
+            <h2>Chat Room</h2>
             <h3>Online Users</h3>
             <ul id="user-list"></ul>
             <h3>Chat with: <span id="chat-with" style="font-weight: bold;"></span></h3>
@@ -267,7 +275,7 @@
         socket.on('login success', () => {
             loginForm.style.display = 'none';
             registerForm.style.display = 'none';
-            chatContainer.style.display = 'inline';
+            chatContainer.style.display = 'block';
             errorDiv.textContent = '';
         });
 
